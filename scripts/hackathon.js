@@ -60,7 +60,6 @@ Hackathon.Requests.orderItems = function(order) {
 
 Hackathon.init = function(){
     Hackathon.Requests.getItems(function(items){
-        debugger;
         var elMenu = document.getElementById("menuData");
 
         items.forEach(function(item) {
@@ -68,13 +67,13 @@ Hackathon.init = function(){
 
             var elTdId = document.createElement("td");
             var elSpanId = document.createElement("span");
-            elSpanId.innerText = item.id;
+            elSpanId.innerText = item.name;
             elTdId.appendChild(elSpanId);
             elTr.appendChild(elTdId);
 
             var elTdName = document.createElement("td");
             var elSpanName = document.createElement("span");
-            elSpanName.innerText = item.name;
+            elSpanName.innerText = 0;
             elTdName.appendChild(elSpanName);
             elTr.appendChild(elTdName);
 
@@ -83,6 +82,12 @@ Hackathon.init = function(){
             elSpanPrice.innerText = item.price;
             elTdPrice.appendChild(elSpanPrice);
             elTr.appendChild(elTdPrice);
+
+            var elTdInclude = document.createElement("td");
+            var elIncludeCheck = document.createElement("input");
+            elIncludeCheck.type = "checkbox";
+            elTdInclude.appendChild(elIncludeCheck);
+            elTr.appendChild(elTdInclude);
 
             elMenu.appendChild(elTr);
         });
