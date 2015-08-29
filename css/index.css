@@ -46,17 +46,28 @@ table {
 
 
 
+/* CSS do app*/
+body{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 section {
-	background-color: gray;
+	background-color:#fff;
 	visibility: hidden;
 	width: 100%;
-	min-height: 600px;
+    height: 0px;
 }
 
 header {
-	background-color: #ffd800;
+	background-color: #fff;
     text-align:center;
     height: 60px;
+    
+    border-bottom:1px solid #dddddd;
+}
+header h1{
+    line-height: 60px;
+    font-size:16pt;
 }
 
 article {
@@ -69,15 +80,26 @@ footer {
 
 .open {
 	visibility: visible;
+    height: 600px;
+}
+
+.button{
+    line-height:30px;
+    padding:5px;
+    text-decoration:none;
+    background-color:#dfdfdf;
+    margin:10px;
 }
 
 
-.left{
-	float: left;
+.back{
+    left: 10px;
+    position: absolute;
 }
 
-.right{
-	float: right;
+.foward{
+    position: absolute;
+    right: 10px;
 }
 
 .button{
