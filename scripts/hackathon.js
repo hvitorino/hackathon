@@ -1,5 +1,6 @@
 var Hackathon = {
-    Models: {}
+    Models: {},
+    Requests    : {}
 };
 
 Hackathon.Models.Item = function(props) {
@@ -15,7 +16,7 @@ Hackathon.Models.ItemOrder = function(props) {
     self.quantity = props.quantity || 0;
 };
 
-Hackathon.Model.Order = function(props) {
+Hackathon.Models.Order = function(props) {
     var self = this;
     self.orderedItems = props.orderedItems;
 };
@@ -24,10 +25,14 @@ Hackathon.Requests.getItems = function(success, error) {
     var xmlRequest = new XMLHttpRequest();
 
     xmlRequest.onreadystatechange = function(){
-        if(xmlRequest.state == 4 && xmlRequest.status == 200){
-            success(xmlRequest.responseText);
-        } else {
-            error(xmlRequest.responseText);
+        if(xmlRequest.readyState == 4) {
+            if(xmlRequest.status == 200) {
+                console.log(xmlRequest.responseText);
+                success(xmlRequest.responseText);
+            } else {
+                console.log(xmlRequest.responseText);
+                error(xmlRequest.responseText);
+            }
         }
     };
 
@@ -49,3 +54,11 @@ Hackathon.Requests.orderItems = function(order) {
     xmlRequest.open("POST", "http://hackathongreenmile.herokuapp.com/item", true);
     xmlRequest.send(null);
 };
+
+Hackathon.init = function(){
+    Hackathon.Requests.getItems(alert, alert);
+}
+
+function init() {
+    Hackathon.init()
+}
