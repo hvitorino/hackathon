@@ -71,11 +71,11 @@ Hackathon.init = function(){
             elTdId.appendChild(elSpanId);
             elTr.appendChild(elTdId);
 
-            var elTdName = document.createElement("td");
-            var elSpanName = document.createElement("span");
-            elSpanName.innerText = 0;
-            elTdName.appendChild(elSpanName);
-            elTr.appendChild(elTdName);
+            var elTdAmount = document.createElement("td");
+            var elInputAmount = document.createElement("input");
+            elInputAmount.value = 0;
+            elTdAmount.appendChild(elInputAmount);
+            elTr.appendChild(elTdAmount);
 
             var elTdPrice = document.createElement("td");
             var elSpanPrice = document.createElement("span");
