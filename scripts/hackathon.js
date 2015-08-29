@@ -1,6 +1,6 @@
 var Hackathon = {
     Models: {},
-    Requests    : {}
+    Requests: {}
 };
 
 Hackathon.Models.Item = function(props) {
@@ -21,17 +21,20 @@ Hackathon.Models.Order = function(props) {
     self.orderedItems = props.orderedItems;
 };
 
-Hackathon.Requests.getItems = function(success, error) {
+Hackathon.View = function(props) {
+    var self = this;
+    self.menu = props.items;
+};
+
+Hackathon.Requests.getItems = function(success) {
     var xmlRequest = new XMLHttpRequest();
 
     xmlRequest.onreadystatechange = function(){
         if(xmlRequest.readyState == 4) {
             if(xmlRequest.status == 200) {
-                console.log(xmlRequest.responseText);
-                success(xmlRequest.responseText);
+                success(JSON.parse(xmlRequest.responseText));
             } else {
-                console.log(xmlRequest.responseText);
-                error(xmlRequest.responseText);
+                alert(xmlRequest.responseText);
             }
         }
     };
@@ -56,7 +59,34 @@ Hackathon.Requests.orderItems = function(order) {
 };
 
 Hackathon.init = function(){
-    Hackathon.Requests.getItems(alert, alert);
+    Hackathon.Requests.getItems(function(items){
+        debugger;
+        var elMenu = document.getElementById("menuData");
+
+        items.forEach(function(item) {
+            var elTr = document.createElement("tr");
+
+            var elTdId = document.createElement("td");
+            var elSpanId = document.createElement("span");
+            elSpanId.innerText = item.id;
+            elTdId.appendChild(elSpanId);
+            elTr.appendChild(elTdId);
+
+            var elTdName = document.createElement("td");
+            var elSpanName = document.createElement("span");
+            elSpanName.innerText = item.name;
+            elTdName.appendChild(elSpanName);
+            elTr.appendChild(elTdName);
+
+            var elTdPrice = document.createElement("td");
+            var elSpanPrice = document.createElement("span");
+            elSpanPrice.innerText = item.price;
+            elTdPrice.appendChild(elSpanPrice);
+            elTr.appendChild(elTdPrice);
+
+            elMenu.appendChild(elTr);
+        });
+    });
 }
 
 function init() {
