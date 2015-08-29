@@ -73,6 +73,7 @@ Hackathon.init = function(){
 
             var elTdAmount = document.createElement("td");
             var elInputAmount = document.createElement("input");
+            elInputAmount.type = "number";
             elInputAmount.value = 0;
             elTdAmount.appendChild(elInputAmount);
             elTr.appendChild(elTdAmount);
