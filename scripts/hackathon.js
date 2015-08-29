@@ -67,15 +67,21 @@ Hackathon.init = function(){
             var elTr = document.createElement("tr");
 
             var elTdId = document.createElement("td");
-            elTdId.innerText = item.id;
+            var elSpanId = document.createElement("span");
+            elSpanId.innerText = item.id;
+            elTdId.appendChild(elSpanId);
             elTr.appendChild(elTdId);
 
             var elTdName = document.createElement("td");
-            elTdName.innerText = item.name;
+            var elSpanName = document.createElement("span");
+            elSpanName.innerText = item.name;
+            elTdName.appendChild(elSpanName);
             elTr.appendChild(elTdName);
 
             var elTdPrice = document.createElement("td");
-            elTdPrice.innerText = item.price;
+            var elSpanPrice = document.createElement("span");
+            elSpanPrice.innerText = item.price;
+            elTdPrice.appendChild(elSpanPrice);
             elTr.appendChild(elTdPrice);
 
             elMenu.appendChild(elTr);
