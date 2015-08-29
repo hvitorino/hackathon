@@ -18,8 +18,12 @@ Hackathon.Models.ItemOrder = function(props) {
 Hackathon.Model.Order = function(props) {
     var self = this;
     self.orderedItems = props.orderedItems;
+};
 
-    self.getTotal = function() {
-    	
-    };
+Hackathon.Requests.getItems = function() {
+
+};
+
+Hackathon.Requests.orderItems = function() {
+
 };
