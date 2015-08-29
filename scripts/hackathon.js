@@ -85,6 +85,7 @@ Hackathon.init = function(){
             elTr.appendChild(elTdPrice);
 
             var elTdInclude = document.createElement("td");
+            elTdInclude.className = "center";
             var elIncludeCheck = document.createElement("input");
             elIncludeCheck.type = "checkbox";
             elTdInclude.appendChild(elIncludeCheck);
@@ -97,4 +98,13 @@ Hackathon.init = function(){
 
 function init() {
     Hackathon.init()
+}
+
+function sendOrder(){
+    var elMenu = document.getElementById("menuData");
+    var elTrs = elMenu.childNodes;
+    debugger;
+
+    return false;
+
 }
