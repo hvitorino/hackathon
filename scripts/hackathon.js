@@ -1,4 +1,4 @@
-var Hackathon = {
+Hackathon = {
     Models: {},
     Requests: {}
 };
@@ -40,17 +40,14 @@ Hackathon.init = function(){
         var elMenu = document.getElementById("menuData");
 
         var view = new Hackathon.View({
-            menu: {
-                items: []
-            },
-            order: {},
-            account: {}
+            menu: new Hackathon.Models.Menu({ items: items }),
+            order: new Hackathon.Models.Order(),
+            account: new Hackathon.Models.Account()
         });
 
         items.forEach(function(item) {
             var menuItem = new Hackathon.Models.MenuItem(item);
-
             elMenu.appendChild(menuItem.render());
         });
     });
-}
+};
