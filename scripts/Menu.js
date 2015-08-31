@@ -2,7 +2,7 @@
  * Created by Hamon on 30/08/2015.
  */
 
-Hackathon.Models.Menu = function (props) {
+Hackathon.Components.Menu = function (props) {
     var self = this;
     self.items = props.items;
 
@@ -33,7 +33,7 @@ Hackathon.Models.Menu = function (props) {
         article.appendChild(table);
 
         self.items.forEach(function(item) {
-            var menuItem = new Hackathon.Models.MenuItem(item);
+            var menuItem = new Hackathon.Components.MenuItem(item);
             table.appendChild(menuItem.render());
         });
 
@@ -41,7 +41,7 @@ Hackathon.Models.Menu = function (props) {
     };
 };
 
-Hackathon.Models.MenuItem = function(props) {
+Hackathon.Components.MenuItem = function(props) {
     var self = this;
     self.id = props.id || -1;
     self.name = props.name || "";

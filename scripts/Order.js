@@ -2,7 +2,7 @@
  * Created by Hamon on 30/08/2015.
  */
 
-Hackathon.Models.Order = function() {
+Hackathon.Components.Order = function() {
     var self = this;
     self.items = [];
 
@@ -37,7 +37,7 @@ Hackathon.Models.Order = function() {
     };
 };
 
-Hackathon.Models.OrderItem = function(props) {
+Hackathon.Components.OrderItem = function(props) {
     var self = this;
     self.id = props.id || -1;
     self.name = props.name || "";

@@ -2,7 +2,7 @@
  * Created by Hamon on 30/08/2015.
  */
 
-Hackathon.Models.Account = function(props) {
+Hackathon.Components.Account = function(props) {
     var self = this;
     self.items = [];
 
@@ -37,7 +37,7 @@ Hackathon.Models.Account = function(props) {
     };
 };
 
-Hackathon.Models.AccountItem = function(props) {
+Hackathon.Components.AccountItem = function(props) {
     var self = this;
     self.id = props.id || -1;
     self.name = props.name || "";

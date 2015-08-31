@@ -1,5 +1,5 @@
 Hackathon = {
-    Models: {},
+    Components: {},
     Requests: {},
     Helper: {}
 };
@@ -39,9 +39,9 @@ Hackathon.Requests.orderItems = function(order) {
 Hackathon.init = function(){
     Hackathon.Requests.getItems(function(items){
         var view = new Hackathon.View({
-            menu: new Hackathon.Models.Menu({ items: items }),
-            order: new Hackathon.Models.Order(),
-            account: new Hackathon.Models.Account()
+            menu: new Hackathon.Components.Menu({ items: items }),
+            order: new Hackathon.Components.Order(),
+            account: new Hackathon.Components.Account()
         });
 
         var container = document.getElementById("container");
