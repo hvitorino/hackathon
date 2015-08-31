@@ -31,7 +31,7 @@ Hackathon.Requests.orderItems = function(order) {
         }
     };
 
-    xmlRequest.open("POST", "http://hackathongreenmile.herokuapp.com/item", true);
+    xmlRequest.open("POST", "http://hackathongreenmile.herokuapp.com/order", true);
     xmlRequest.send(null);
 };
 

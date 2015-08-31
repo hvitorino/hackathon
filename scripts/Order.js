@@ -2,9 +2,9 @@
  * Created by Hamon on 30/08/2015.
  */
 
-Hackathon.Models.Order = function(props) {
+Hackathon.Models.Order = function() {
     var self = this;
-    self.items = props.items;
+    self.items = [];
 
     self.render = function() {
         var elTable = document.createElement("table");

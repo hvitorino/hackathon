@@ -4,7 +4,7 @@
 
 Hackathon.Models.Account = function(props) {
     var self = this;
-    self.items = props.items;
+    self.items = [];
 
     self.render = function() {
         var elTable = document.createElement("table");

@@ -4,16 +4,55 @@
     <title></title>
     <meta charset="utf-8" />
     <link href="css/index.css" rel="stylesheet" />
+    <script>
+        function addScript(filepath, callback) {
+            if (filepath) {
+                var fileref = document.createElement('script');
+                var done = false;
+                var head = document.getElementsByTagName("head")[0];
 
-    <script type="javascript" src="scripts/hackathon.js"></script>
-    <script type="javascript" src="scripts/Account.js"></script>
-    <script type="javascript" src="scripts/Menu.js"></script>
-    <script type="javascript" src="scripts/Order.js"></script>
-    <script type="javascript" src="scripts/View.js"></script>
+                fileref.onload = fileref.onreadystatechange = function () {
+                    if (!done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+                        done = true;
+
+                        callback();
+
+                        // Handle memory leak in IE
+                        fileref.onload = fileref.onreadystatechange = null;
+                        if (head && fileref.parentNode) {
+                            head.removeChild(fileref);
+                        }
+                    }
+                };
+
+                fileref.setAttribute("type", "text/javascript");
+                fileref.setAttribute("src", filepath);
+
+                head.appendChild(fileref);
+            }
+        }
+
+        function addAllScripts() {
+            addScript("scripts/hackathon.js",
+                function () {
+                    addScript("scripts/Menu.js", function () {
+                        addScript("scripts/Account.js", function () {
+                            addScript("scripts/Order.js", function () {
+                                addScript("scripts/View.js", function () {
+                                    Hackathon.init();
+                                })
+                            })
+                        })
+                    })
+                });
+        };
+
+        addAllScripts();
+    </script>
 </head>
 <body>
-
-    <!--<section id="pedidos">
+    <!--
+    <section id="pedidos">
         <header>
             <h1>Pedidos</h1>
             <a href="" class="foward">Cardapio</a>
@@ -36,7 +75,8 @@
         <footer>
             <a href="#">Fechar Conta </a>
         </footer>
-    </section>-->
+    </section>
+    -->
 
     <section id="cardapio" class="open">
         <header>
@@ -47,79 +87,11 @@
         <article>
             <table id="menuData">
                 <thead>
-                <th><span>Item</span></th>
-                <th><span>Quantidade</span></th>
-                <th><span>Total</span></th>
-                <th class="center"><span> Incluir</span></th>
+                    <th><span>Item</span></th>
+                    <th><span>Quantidade</span></th>
+                    <th><span>Total</span></th>
+                    <th class="center"><span> Incluir</span></th>
                 </thead>
-                <!--
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                <tr>
-                    <td><span>Porcao de baiao</span></td>
-                    <td><span>2</span></td>
-                    <td><span>R$: 20,00</span></td>
-                    <td class="center"><input type="checkbox" /></td>
-                </tr>
-                -->
             </table>
         </article>
         <footer></footer>
@@ -134,10 +106,4 @@
     </section>
     -->
 </body>
-<script>
-    window.onload = function() {
-        debugger;
-        Hackathon.init();
-    };
-</script>
 </html>
