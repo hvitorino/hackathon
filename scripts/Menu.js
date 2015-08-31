@@ -7,33 +7,37 @@ Hackathon.Models.Menu = function (props) {
     self.items = props.items;
 
     self.render = function() {
-        var elTable = document.createElement("table");
+        var section = Hackathon.Helper.htmlToDOM("<section class='open'></section>");
 
-        var elHead = document.createElement("thead");
-        elTable.appendChild(elHead);
+        var header = Hackathon.Helper.htmlToDOM(
+                        "<header>\
+                            <a href='' class='button back'>Voltar</a>\
+                            <a href='' onclick='sendOrder();' class='button foward'>Avancar</a>\
+                            <h1>Cardapio</h1>\
+                        </header>");
 
-        var elThItem = document.createElement("th");
-        elThItem.innerText = "Nome";
-        elHead.appendChild(elThItem);
+        var article = Hackathon.Helper.htmlToDOM("<article></article>");
 
-        var elThQuantidade = document.createElement("th");
-        elThQuantidade.innerText = "Quantidade";
-        elHead.appendChild(elThQuantidade);
+        var table = Hackathon.Helper.htmlToDOM(
+            "<table>\
+                <thead>\
+                    <th>Nome</th>\
+                    <th>Quantidade</th>\
+                    <th>Preço</th>\
+                    <th>Incluir</th>\
+                </thead>\
+             </table>");
 
-        var elThPreco = document.createElement("th");
-        elThPreco.innerText = "Preço";
-        elHead.appendChild(elThPreco);
-
-        var elThIncluir = document.createElement("th");
-        elThIncluir.innerText = "Incluir";
-        elHead.appendChild(elThIncluir);
+        section.appendChild(header);
+        section.appendChild(article);
+        article.appendChild(table);
 
         self.items.forEach(function(item) {
             var menuItem = new Hackathon.Models.MenuItem(item);
-            elTable.appendChild(menuItem.render());
+            table.appendChild(menuItem.render());
         });
 
-        return elTable;
+        return section;
     };
 };
 

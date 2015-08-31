@@ -7,4 +7,8 @@ Hackathon.View = function(props) {
     self.menu = props.menu;
     self.order = props.order;
     self.account = props.account;
+
+    self.render = function() {
+        return self.menu.render();
+    }
 };

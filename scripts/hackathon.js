@@ -1,6 +1,7 @@
 Hackathon = {
     Models: {},
-    Requests: {}
+    Requests: {},
+    Helper: {}
 };
 
 Hackathon.Requests.getItems = function(success) {
@@ -37,17 +38,44 @@ Hackathon.Requests.orderItems = function(order) {
 
 Hackathon.init = function(){
     Hackathon.Requests.getItems(function(items){
-        var elMenu = document.getElementById("menuData");
-
         var view = new Hackathon.View({
             menu: new Hackathon.Models.Menu({ items: items }),
             order: new Hackathon.Models.Order(),
             account: new Hackathon.Models.Account()
         });
 
-        items.forEach(function(item) {
-            var menuItem = new Hackathon.Models.MenuItem(item);
-            elMenu.appendChild(menuItem.render());
-        });
+        var container = document.getElementById("container");
+        container.appendChild(view.render());
     });
+};
+
+
+Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
+    var container = document.createElement("div");
+
+    if(obj) {
+        container.innerHTML = Hackathon.Helper.renderTemplateString(htmlString, obj);
+    } else {
+        container.innerHTML = htmlString;
+    }
+
+    return container.childNodes[0];
+}
+
+Hackathon.Helper.renderTemplateString = function(htmlString, obj) {
+    return this.replace(/{([^{}]*)}/g,
+        function (a, b) {
+            var r = o[b];
+            return typeof r === 'string' || typeof r === 'number' ? r : a;
+        }
+    );
+}
+
+String.prototype.supplant = function (o) {
+    return this.replace(/{([^{}]*)}/g,
+        function (a, b) {
+            var r = o[b];
+            return typeof r === 'string' || typeof r === 'number' ? r : a;
+        }
+    );
 };
