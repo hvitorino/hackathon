@@ -18,7 +18,7 @@ Hackathon.Components.Account = function(props) {
 
     self.setOrder = function (order) {
         self.order = order;
-    }
+    };
 
     self.render = function () {
         self.section = self.renderSection();

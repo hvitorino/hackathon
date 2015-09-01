@@ -42,9 +42,11 @@ Hackathon.Components.Order = function() {
         var header = self.renderHeader();
         var article = self.renderArticle();
         var table = self.renderTable();
+        var footer = self.renderFooter();
 
         self.section.appendChild(header);
         self.section.appendChild(article);
+        self.section.appendChild(footer);
         article.appendChild(table);
 
         self.items.forEach(function (item) {
@@ -101,6 +103,15 @@ Hackathon.Components.Order = function() {
         return table;
     };
 
+    self.renderFooter = function () {
+        var footer = document.createElement("footer");
+        var closeAccountButton = self.renderCloseAccountButton();
+
+        footer.appendChild(closeAccountButton);
+
+        return footer;
+    };
+
     self.renderMenuButton = function() {
         var aMenu = document.createElement('a');
         aMenu.appendChild(document.createTextNode("Cardápio"));
@@ -114,6 +125,18 @@ Hackathon.Components.Order = function() {
 
         return aMenu;
     }
+
+    self.renderCloseAccountButton = function() {
+        var aMenu = document.createElement('a');
+        aMenu.appendChild(document.createTextNode("Fechar a conta"));
+        aMenu.href = "";
+        aMenu.className = "button center";
+        aMenu.onclick = function () {
+            return false;
+        };
+
+        return aMenu;
+    };
 };
 
 Hackathon.Components.OrderItem = function(props) {

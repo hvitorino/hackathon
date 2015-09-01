@@ -24,7 +24,7 @@ Hackathon.Components.Menu = function (props) {
 
     self.setOrder = function(order) {
         self.order = order;
-    }
+    };
 
     self.render = function () {
         self.section = self.renderSection();
