@@ -33,25 +33,22 @@
         }
 
         function addAllScripts() {
-            addScript("scripts/hackathon.js",
-                function () {
-                    addScript("scripts/Menu.js", function () {
-                        addScript("scripts/Account.js", function () {
-                            addScript("scripts/Order.js", function () {
-                                addScript("scripts/View.js", function () {
-                                    Hackathon.init();
-                                })
+            addScript("scripts/hackathon.js", function () {
+                addScript("scripts/Menu.js", function () {
+                    addScript("scripts/Account.js", function () {
+                        addScript("scripts/Order.js", function () {
+                            addScript("scripts/View.js", function () {
+                                Hackathon.init();
                             })
                         })
                     })
-                });
+                })
+            });
         };
 
         addAllScripts();
     </script>
 </head>
 <body>
-<div id="container">
-</div>
 </body>
 </html>

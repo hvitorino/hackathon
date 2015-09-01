@@ -26,6 +26,7 @@ Hackathon.Components.Order = function() {
 
     self.renderSection = function renderSection() {
         var section = document.createElement('section');
+        section.className = "open";
         return section;
     };
 
@@ -74,10 +75,6 @@ Hackathon.Components.Order = function() {
         thPreco.appendChild(document.createTextNode("Preço"));
         thead.appendChild(thPreco);
 
-        var thIncluir = document.createElement('th');
-        thIncluir.appendChild(document.createTextNode("Incluir"));
-        thead.appendChild(thIncluir);
-
         table.appendChild(thead);
 
         return table;
@@ -111,13 +108,6 @@ Hackathon.Components.OrderItem = function(props) {
         elSpanPrice.innerText = self.price;
         elTdPrice.appendChild(elSpanPrice);
         elTr.appendChild(elTdPrice);
-
-        var elTdInclude = document.createElement("td");
-        elTdInclude.className = "center";
-        var elIncludeCheck = document.createElement("input");
-        elIncludeCheck.type = "checkbox";
-        elTdInclude.appendChild(elIncludeCheck);
-        elTr.appendChild(elTdInclude);
 
         return elTr;
     };

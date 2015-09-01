@@ -26,7 +26,6 @@ Hackathon.Components.Menu = function (props) {
 
     self.renderSection = function renderSection() {
         var section = document.createElement('section');
-        section.className = "open";
         return section;
     };
 

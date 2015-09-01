@@ -39,12 +39,11 @@ Hackathon.Requests.orderItems = function(order) {
 Hackathon.init = function(){
     Hackathon.Requests.getItems(function(items){
         var view = new Hackathon.View({
-            menu: new Hackathon.Components.Menu({ items: items }),
             order: new Hackathon.Components.Order(),
+            menu: new Hackathon.Components.Menu({ items: items }),
             account: new Hackathon.Components.Account()
         });
 
-        var container = document.getElementById("container");
-        container.appendChild(view.render());
+        document.body.appendChild(view.render());
     });
 };
