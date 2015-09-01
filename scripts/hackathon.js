@@ -50,7 +50,7 @@ Hackathon.init = function(){
 };
 
 
-Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
+/*Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
     var container = document.createElement("div");
 
     if(obj) {
@@ -60,22 +60,23 @@ Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
     }
 
     return container.childNodes[0];
+}*/
+
+Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
+    var parser = new HTMLParser();
+
+    if(obj) {
+        return parser.parseFromString(Hackathon.Helper.renderTemplateString(htmlString, obj), "text/xml");
+    }
+
+    return parser.parseFromString(htmlString, "text/xml");
 }
 
 Hackathon.Helper.renderTemplateString = function(htmlString, obj) {
-    return this.replace(/{([^{}]*)}/g,
+    return htmlString.replace(/{([^{}]*)}/g,
         function (a, b) {
-            var r = o[b];
+            var r = obj[b];
             return typeof r === 'string' || typeof r === 'number' ? r : a;
         }
     );
 }
-
-String.prototype.supplant = function (o) {
-    return this.replace(/{([^{}]*)}/g,
-        function (a, b) {
-            var r = o[b];
-            return typeof r === 'string' || typeof r === 'number' ? r : a;
-        }
-    );
-};

@@ -49,34 +49,12 @@ Hackathon.Components.MenuItem = function(props) {
     self.amount = props.amount || 0;
 
     self.render = function() {
-        var elTr = document.createElement("tr");
-
-        var elTdName = document.createElement("td");
-        var elSpanName = document.createElement("span");
-        elSpanName.innerText = self.name;
-        elTdName.appendChild(elSpanName);
-        elTr.appendChild(elTdName);
-
-        var elTdAmount = document.createElement("td");
-        var elInputAmount = document.createElement("input");
-        elInputAmount.type = "number";
-        elInputAmount.value = self.amount;
-        elTdAmount.appendChild(elInputAmount);
-        elTr.appendChild(elTdAmount);
-
-        var elTdPrice = document.createElement("td");
-        var elSpanPrice = document.createElement("span");
-        elSpanPrice.innerText = self.price;
-        elTdPrice.appendChild(elSpanPrice);
-        elTr.appendChild(elTdPrice);
-
-        var elTdInclude = document.createElement("td");
-        elTdInclude.className = "center";
-        var elIncludeCheck = document.createElement("input");
-        elIncludeCheck.type = "checkbox";
-        elTdInclude.appendChild(elIncludeCheck);
-        elTr.appendChild(elTdInclude);
-
-        return elTr;
+        return Hackathon.Helper.htmlToDOM(
+            "<tr>\
+                <td><span>{name}</span></td>\
+                <td><input type='number' value='{amount}' /></td>\
+                <td><span>{price}</span></td>\
+                <td><input type='checkbox' /></td>\
+             </tr>", self);
     };
 };
