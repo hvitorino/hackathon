@@ -5,15 +5,46 @@
 Hackathon.Components.Order = function() {
     var self = this;
     self.items = [];
+    self.section = null;
+
+    self.menu = null;
+    self.account = null;
+
+    self.goToMenu = function () {
+        self.hide();
+        self.menu.show();
+    };
+
+    self.closeAccount = function () {
+        self.hide();
+        self.account.show();
+    };
+
+    self.show = function () {
+        self.section.className = "open";
+    };
+
+    self.hide = function () {
+        self.section.className = "";
+    };
+
+    self.setMenu = function (menu) {
+        self.menu = menu;
+    };
+
+    self.setAccount = function (account) {
+        self.account = account;
+    };
 
     self.render = function () {
-        var section = self.renderSection();
+        self.section = self.renderSection();
+
         var header = self.renderHeader();
         var article = self.renderArticle();
         var table = self.renderTable();
 
-        section.appendChild(header);
-        section.appendChild(article);
+        self.section.appendChild(header);
+        self.section.appendChild(article);
         article.appendChild(table);
 
         self.items.forEach(function (item) {
@@ -21,7 +52,7 @@ Hackathon.Components.Order = function() {
             table.appendChild(menuItem.render());
         });
 
-        return section;
+        return self.section;
     };
 
     self.renderSection = function renderSection() {
@@ -33,18 +64,8 @@ Hackathon.Components.Order = function() {
     self.renderHeader = function () {
         var header = document.createElement('header');
 
-        var aVoltar = document.createElement('a');
-        aVoltar.href = "";
-        aVoltar.className = "button back";
-        aVoltar.appendChild(document.createTextNode("Voltar"));
-        header.appendChild(aVoltar);
-
-        var aAvancar = document.createElement('a');
-        aAvancar.href = "";
-        aAvancar.className = "button foward";
-
-        aAvancar.appendChild(document.createTextNode("Avancar"));
-        header.appendChild(aAvancar);
+        var aMenu = self.renderMenuButton();
+        header.appendChild(aMenu);
 
         var h1Titulo = document.createElement('h1');
         h1Titulo.appendChild(document.createTextNode("Pedido"));
@@ -79,6 +100,20 @@ Hackathon.Components.Order = function() {
 
         return table;
     };
+
+    self.renderMenuButton = function() {
+        var aMenu = document.createElement('a');
+        aMenu.appendChild(document.createTextNode("Cardápio"));
+        aMenu.href = "";
+        aMenu.className = "button foward";
+        aMenu.onclick = function () {
+            self.goToMenu();
+
+            return false;
+        };
+
+        return aMenu;
+    }
 };
 
 Hackathon.Components.OrderItem = function(props) {

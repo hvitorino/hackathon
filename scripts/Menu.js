@@ -6,14 +6,30 @@ Hackathon.Components.Menu = function (props) {
     var self = this;
     self.items = props.items;
 
+    self.order = null;
+    self.section = null;
+
+    self.show = function () {
+        self.section.className = "open";
+    };
+
+    self.hide = function () {
+        self.section.className = "";
+    };
+
+    self.setOrder = function(order) {
+        self.order = order;
+    }
+
     self.render = function () {
-        var section = self.renderSection();
+        self.section = self.renderSection();
+
         var header = self.renderHeader();
         var article = self.renderArticle();
         var table = self.renderTable();
 
-        section.appendChild(header);
-        section.appendChild(article);
+        self.section.appendChild(header);
+        self.section.appendChild(article);
         article.appendChild(table);
 
         self.items.forEach(function (item) {
@@ -21,7 +37,7 @@ Hackathon.Components.Menu = function (props) {
             table.appendChild(menuItem.render());
         });
 
-        return section;
+        return self.section;
     };
 
     self.renderSection = function renderSection() {
