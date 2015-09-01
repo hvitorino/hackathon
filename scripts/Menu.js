@@ -9,6 +9,11 @@ Hackathon.Components.Menu = function (props) {
     self.order = null;
     self.section = null;
 
+    self.goToOrder = function () {
+        self.hide();
+        self.order.show();
+    };
+
     self.show = function () {
         self.section.className = "open";
     };
@@ -52,17 +57,12 @@ Hackathon.Components.Menu = function (props) {
         aVoltar.href = "";
         aVoltar.className = "button back";
         aVoltar.appendChild(document.createTextNode("Voltar"));
-        header.appendChild(aVoltar);
+        aVoltar.onclick = function () {
+            self.goToOrder();
 
-        var aAvancar = document.createElement('a');
-        aAvancar.href = "";
-        aAvancar.className = "button foward";
-        aAvancar.onclick = function () {
-            sendOrder()
+            return false;
         };
-
-        aAvancar.appendChild(document.createTextNode("Avancar"));
-        header.appendChild(aAvancar);
+        header.appendChild(aVoltar);
 
         var h1Titulo = document.createElement('h1');
         h1Titulo.appendChild(document.createTextNode("Cardapio"));
