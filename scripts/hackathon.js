@@ -48,12 +48,3 @@ Hackathon.init = function(){
         container.appendChild(view.render());
     });
 };
-
-Hackathon.Helper.renderTemplateString = function(htmlString, obj) {
-    return htmlString.replace(/{([^{}]*)}/g,
-        function (a, b) {
-            var r = obj[b];
-            return typeof r === 'string' || typeof r === 'number' ? r : a;
-        }
-    );
-}

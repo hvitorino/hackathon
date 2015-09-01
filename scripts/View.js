@@ -9,6 +9,16 @@ Hackathon.View = function(props) {
     self.account = props.account;
 
     self.render = function() {
-        return self.menu.render();
+        var div = document.createElement("div");
+
+        var order = self.order.render();
+        var menu = self.menu.render();
+        var account = self.account.render();
+
+        div.appendChild(order);
+        div.appendChild(menu);
+        div.appendChild(account);
+
+        return div;
     }
 };

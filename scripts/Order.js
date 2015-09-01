@@ -6,34 +6,81 @@ Hackathon.Components.Order = function() {
     var self = this;
     self.items = [];
 
-    self.render = function() {
-        var elTable = document.createElement("table");
+    self.render = function () {
+        var section = self.renderSection();
+        var header = self.renderHeader();
+        var article = self.renderArticle();
+        var table = self.renderTable();
 
-        var elHead = document.createElement("thead");
-        elTable.appendChild(elHead);
+        section.appendChild(header);
+        section.appendChild(article);
+        article.appendChild(table);
 
-        var elThItem = document.createElement("th");
-        elThItem.innerText = "Nome";
-        elHead.appendChild(elThItem);
-
-        var elThQuantidade = document.createElement("th");
-        elThQuantidade.innerText = "Quantidade";
-        elHead.appendChild(elThQuantidade);
-
-        var elThPreco = document.createElement("th");
-        elThPreco.innerText = "Preço";
-        elHead.appendChild(elThPreco);
-
-        var elThIncluir = document.createElement("th");
-        elThIncluir.innerText = "Incluir";
-        elHead.appendChild(elThIncluir);
-
-        self.items.forEach(function(item) {
-            var menuItem = new Hackathon.Models.MenuItem(item);
-            elTable.appendChild(menuItem.render());
+        self.items.forEach(function (item) {
+            var menuItem = new Hackathon.Components.OrderItem(item);
+            table.appendChild(menuItem.render());
         });
 
-        return elTable;
+        return section;
+    };
+
+    self.renderSection = function renderSection() {
+        var section = document.createElement('section');
+        return section;
+    };
+
+    self.renderHeader = function () {
+        var header = document.createElement('header');
+
+        var aVoltar = document.createElement('a');
+        aVoltar.href = "";
+        aVoltar.className = "button back";
+        aVoltar.appendChild(document.createTextNode("Voltar"));
+        header.appendChild(aVoltar);
+
+        var aAvancar = document.createElement('a');
+        aAvancar.href = "";
+        aAvancar.className = "button foward";
+
+        aAvancar.appendChild(document.createTextNode("Avancar"));
+        header.appendChild(aAvancar);
+
+        var h1Titulo = document.createElement('h1');
+        h1Titulo.appendChild(document.createTextNode("Pedido"));
+        header.appendChild(h1Titulo);
+
+        return header;
+    };
+
+    self.renderArticle = function () {
+        var article = document.createElement("article");
+        return article;
+    };
+
+    self.renderTable = function () {
+        var table = document.createElement('table');
+
+        var thead = document.createElement('thead');
+
+        var thNome = document.createElement('th');
+        thNome.appendChild(document.createTextNode("Nome"));
+        thead.appendChild(thNome);
+
+        var thQuantidade = document.createElement('th');
+        thQuantidade.appendChild(document.createTextNode("Quantidade"));
+        thead.appendChild(thQuantidade);
+
+        var thPreco = document.createElement('th');
+        thPreco.appendChild(document.createTextNode("Preço"));
+        thead.appendChild(thPreco);
+
+        var thIncluir = document.createElement('th');
+        thIncluir.appendChild(document.createTextNode("Incluir"));
+        thead.appendChild(thIncluir);
+
+        table.appendChild(thead);
+
+        return table;
     };
 };
 
