@@ -49,29 +49,6 @@ Hackathon.init = function(){
     });
 };
 
-
-/*Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
-    var container = document.createElement("div");
-
-    if(obj) {
-        container.innerHTML = Hackathon.Helper.renderTemplateString(htmlString, obj);
-    } else {
-        container.innerHTML = htmlString;
-    }
-
-    return container.childNodes[0];
-}*/
-
-Hackathon.Helper.htmlToDOM = function(htmlString, obj) {
-    var parser = new HTMLParser();
-
-    if(obj) {
-        return parser.parseFromString(Hackathon.Helper.renderTemplateString(htmlString, obj), "text/xml");
-    }
-
-    return parser.parseFromString(htmlString, "text/xml");
-}
-
 Hackathon.Helper.renderTemplateString = function(htmlString, obj) {
     return htmlString.replace(/{([^{}]*)}/g,
         function (a, b) {
