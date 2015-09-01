@@ -58,7 +58,7 @@ body {
 
 section {
     background-color: #fff;
-    visibility: hidden;
+    display: none;
     width: 100%;
 }
 
@@ -113,7 +113,7 @@ article table {
         }
 
 .open {
-    visibility: visible;
+    display: block;
     height: 705px;
 }
 
