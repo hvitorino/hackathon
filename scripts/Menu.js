@@ -5,6 +5,8 @@
 Hackathon.Components.Menu = function (props) {
     var self = this;
     self.items = props.items;
+    self.selectedItems = [];
+
     self.onConfirm = props.onConfirm || function () {};
 
     self.order = null;
@@ -27,6 +29,16 @@ Hackathon.Components.Menu = function (props) {
         self.order = order;
     };
 
+    self.addSelectedItem = function(item) {
+        self.selectedItems.push(item);
+    };
+
+    self.removeUnselectedItem = function (deselectedItem) {
+        self.selectedItems = self.selectedItems.filter(function (item) {
+            return item.id !== deselectedItem.id;
+        });
+    };
+
     self.render = function () {
         self.section = self.renderSection();
 
@@ -42,6 +54,8 @@ Hackathon.Components.Menu = function (props) {
 
         self.items.forEach(function (item) {
             var menuItem = new Hackathon.Components.MenuItem(item);
+            menuItem.onSelect = self.addSelectedItem;
+            menuItem.onDeselect = self.removeUnselectedItem;
             table.appendChild(menuItem.render());
         });
 
@@ -136,6 +150,9 @@ Hackathon.Components.MenuItem = function (props) {
     self.price = props.price || 0;
     self.amount = props.amount || 0;
 
+    self.onSelect = props.onSelect || function () {};
+    self.onDeselect = props.onDeselect || function () {};
+
     self.render = function () {
         var tr = document.createElement('tr');
 
@@ -167,6 +184,13 @@ Hackathon.Components.MenuItem = function (props) {
 
         var inputInclude = document.createElement('input');
         inputInclude.type = "checkbox";
+        inputInclude.onclick = function () {
+            if(inputInclude.checked) {
+                self.onSelect(self);
+            } else {
+                self.onDeselect(self);
+            }
+        };
         tdInclude.appendChild(inputInclude);
 
         tr.appendChild(tdInclude);
