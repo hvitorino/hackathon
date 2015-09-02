@@ -32,10 +32,12 @@ Hackathon.Components.Menu = function (props) {
         var header = self.renderHeader();
         var article = self.renderArticle();
         var table = self.renderTable();
+        var footer = self.renderFooter();
 
         self.section.appendChild(header);
         self.section.appendChild(article);
         article.appendChild(table);
+        self.section.appendChild(footer);
 
         self.items.forEach(function (item) {
             var menuItem = new Hackathon.Components.MenuItem(item);
@@ -100,6 +102,29 @@ Hackathon.Components.Menu = function (props) {
         table.appendChild(thead);
 
         return table;
+    };
+
+    self.renderFooter = function () {
+        var footer = document.createElement("footer");
+        var confirmButton = self.renderConfirmButton();
+
+        footer.appendChild(confirmButton);
+
+        return footer;
+    };
+
+    self.renderConfirmButton = function () {
+        var aConfirm = document.createElement('a');
+        aConfirm.appendChild(document.createTextNode("Confirma"));
+        aConfirm.href = "";
+        aConfirm.className = "button forward";
+        aConfirm.onclick = function () {
+            self.goToMenu();
+
+            return false;
+        };
+
+        return aConfirm;
     };
 };
 

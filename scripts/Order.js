@@ -116,7 +116,7 @@ Hackathon.Components.Order = function() {
         var aMenu = document.createElement('a');
         aMenu.appendChild(document.createTextNode("Cardápio"));
         aMenu.href = "";
-        aMenu.className = "button foward";
+        aMenu.className = "button forward";
         aMenu.onclick = function () {
             self.goToMenu();
 
@@ -130,7 +130,7 @@ Hackathon.Components.Order = function() {
         var aMenu = document.createElement('a');
         aMenu.appendChild(document.createTextNode("Fechar a conta"));
         aMenu.href = "";
-        aMenu.className = "button center";
+        aMenu.className = "button forward";
         aMenu.onclick = function () {
             return false;
         };
