@@ -4,9 +4,16 @@
 
 Hackathon.View = function(props) {
     var self = this;
-    self.order = props.order;
-    self.menu = props.menu;
-    self.account = props.account;
+    self.order = new Hackathon.Components.Order();
+    self.account = new Hackathon.Components.Account();
+
+    self.menu = new Hackathon.Components.Menu({
+        items: props.menuItems,
+
+        onConfirm: function () {
+            alert("Itens selecionados.");
+        }
+    });
 
     self.order.setMenu(self.menu);
     self.order.setAccount(self.account);

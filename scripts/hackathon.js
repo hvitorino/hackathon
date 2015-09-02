@@ -39,9 +39,7 @@ Hackathon.Requests.orderItems = function(order) {
 Hackathon.init = function(){
     Hackathon.Requests.getItems(function(items){
         var view = new Hackathon.View({
-            order: new Hackathon.Components.Order(),
-            menu: new Hackathon.Components.Menu({ items: items, onConfirm: function () { alert("Itens selecionados.") } }),
-            account: new Hackathon.Components.Account()
+            menuItems: items
         });
 
         document.body.appendChild(view.render());
