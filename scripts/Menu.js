@@ -5,6 +5,7 @@
 Hackathon.Components.Menu = function (props) {
     var self = this;
     self.items = props.items;
+    self.onConfirm = props.onConfirm || function () {};
 
     self.order = null;
     self.section = null;
@@ -119,7 +120,7 @@ Hackathon.Components.Menu = function (props) {
         aConfirm.href = "";
         aConfirm.className = "button forward";
         aConfirm.onclick = function () {
-            self.goToMenu();
+            self.onConfirm();
 
             return false;
         };
