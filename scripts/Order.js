@@ -6,9 +6,15 @@ Hackathon.Components.Order = function() {
     var self = this;
     self.items = [];
     self.section = null;
+    self.table = null;
 
     self.menu = null;
     self.account = null;
+
+    self.addItem = function (item) {
+        var orderItem = new Hackathon.Components.OrderItem(item);
+        self.table.appendChild(orderItem.render());
+    };
 
     self.goToMenu = function () {
         self.hide();
@@ -41,17 +47,17 @@ Hackathon.Components.Order = function() {
 
         var header = self.renderHeader();
         var article = self.renderArticle();
-        var table = self.renderTable();
+        self.table = self.renderTable();
         var footer = self.renderFooter();
 
         self.section.appendChild(header);
         self.section.appendChild(article);
         self.section.appendChild(footer);
-        article.appendChild(table);
+        article.appendChild(self.table);
 
         self.items.forEach(function (item) {
             var menuItem = new Hackathon.Components.OrderItem(item);
-            table.appendChild(menuItem.render());
+            self.table.appendChild(menuItem.render());
         });
 
         return self.section;

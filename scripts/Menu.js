@@ -39,6 +39,10 @@ Hackathon.Components.Menu = function (props) {
         });
     };
 
+    self.getSelectedItems = function () {
+        return self.selectedItems;
+    };
+
     self.render = function () {
         self.section = self.renderSection();
 

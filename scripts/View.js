@@ -11,7 +11,18 @@ Hackathon.View = function(props) {
         items: props.menuItems,
 
         onConfirm: function () {
-            alert("Itens selecionados.");
+            debugger;
+            var selectedItems = self.menu.getSelectedItems();
+
+            try{
+                selectedItems.forEach(self.order.addItem);
+            }
+            catch (e) {
+                console.log(e);
+                return false;
+            }
+
+            return false;
         }
     });
 
