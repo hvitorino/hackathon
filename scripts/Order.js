@@ -2,17 +2,20 @@
  * Created by Hamon on 30/08/2015.
  */
 
-Hackathon.Components.Order = function() {
+Hackathon.Components.Order = function(props) {
     var self = this;
-    self.items = [];
+    self.orderedItems = [];
     self.section = null;
     self.table = null;
+
+    self.onCloseAccount = props.onCloseAccount || function () {};
 
     self.menu = null;
     self.account = null;
 
     self.addItem = function (item) {
         var orderItem = new Hackathon.Components.OrderItem(item);
+        self.orderedItems.push(orderItem);
         self.table.appendChild(orderItem.render());
     };
 
@@ -55,7 +58,7 @@ Hackathon.Components.Order = function() {
         self.section.appendChild(footer);
         article.appendChild(self.table);
 
-        self.items.forEach(function (item) {
+        self.orderedItems.forEach(function (item) {
             var menuItem = new Hackathon.Components.OrderItem(item);
             self.table.appendChild(menuItem.render());
         });
@@ -138,6 +141,8 @@ Hackathon.Components.Order = function() {
         aMenu.href = "";
         aMenu.className = "button forward";
         aMenu.onclick = function () {
+            self.onCloseAccount();
+
             return false;
         };
 

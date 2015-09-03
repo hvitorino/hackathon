@@ -5,8 +5,15 @@
 Hackathon.Components.Account = function(props) {
     var self = this;
     self.items = [];
+    self.table = null;
 
     self.order = null;
+
+    self.addItem = function (item) {
+        var accountItem = new Hackathon.Components.AccountItem(item);
+        self.items.push(accountItem);
+        self.table.appendChild(accountItem.render());
+    };
 
     self.show = function () {
         self.section.className = "open";
@@ -25,15 +32,15 @@ Hackathon.Components.Account = function(props) {
 
         var header = self.renderHeader();
         var article = self.renderArticle();
-        var table = self.renderTable();
+        self.table = self.renderTable();
 
         self.section.appendChild(header);
         self.section.appendChild(article);
-        article.appendChild(table);
+        article.appendChild(self.table);
 
         self.items.forEach(function (item) {
             var menuItem = new Hackathon.Components.OrderItem(item);
-            table.appendChild(menuItem.render());
+            self.table.appendChild(menuItem.render());
         });
 
         return self.section;

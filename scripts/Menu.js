@@ -8,9 +8,19 @@ Hackathon.Components.Menu = function (props) {
     self.selectedItems = [];
 
     self.onConfirm = props.onConfirm || function () {};
+    self.selectedItemsDom = [];
 
     self.order = null;
     self.section = null;
+
+    self.clearSelection = function () {
+        self.selectedItemsDom.forEach(function (checkbox){
+            checkbox.checked = false;
+        });
+
+        self.selectedItems = [];
+        self.selectedItemsDom = [];
+    };
 
     self.goToOrder = function () {
         self.hide();
@@ -18,6 +28,7 @@ Hackathon.Components.Menu = function (props) {
     };
 
     self.show = function () {
+        self.clearSelection();
         self.section.className = "open";
     };
 
@@ -29,13 +40,18 @@ Hackathon.Components.Menu = function (props) {
         self.order = order;
     };
 
-    self.addSelectedItem = function(item) {
+    self.addSelectedItem = function(item, itemCheckbox) {
         self.selectedItems.push(item);
+        self.selectedItemsDom.push(itemCheckbox);
     };
 
-    self.removeUnselectedItem = function (deselectedItem) {
+    self.removeUnselectedItem = function (deselectedItem, deselectedItemCheckbox) {
         self.selectedItems = self.selectedItems.filter(function (item) {
             return item.id !== deselectedItem.id;
+        });
+
+        self.selectedItemsDom = self.selectedItems.filter(function (item) {
+            return item !== deselectedItemCheckbox;
         });
     };
 
@@ -139,6 +155,7 @@ Hackathon.Components.Menu = function (props) {
         aConfirm.className = "button forward";
         aConfirm.onclick = function () {
             self.onConfirm();
+            self.goToOrder();
 
             return false;
         };
@@ -190,9 +207,9 @@ Hackathon.Components.MenuItem = function (props) {
         inputInclude.type = "checkbox";
         inputInclude.onclick = function () {
             if(inputInclude.checked) {
-                self.onSelect(self);
+                self.onSelect(self, inputInclude);
             } else {
-                self.onDeselect(self);
+                self.onDeselect(self, inputInclude);
             }
         };
         tdInclude.appendChild(inputInclude);

@@ -4,25 +4,20 @@
 
 Hackathon.View = function(props) {
     var self = this;
-    self.order = new Hackathon.Components.Order();
     self.account = new Hackathon.Components.Account();
+
+    self.order = new Hackathon.Components.Order({
+        onCloseAccount: function () {
+            alert("Fechar a conta");
+        }
+    });
 
     self.menu = new Hackathon.Components.Menu({
         items: props.menuItems,
 
         onConfirm: function () {
-            debugger;
             var selectedItems = self.menu.getSelectedItems();
-
-            try{
-                selectedItems.forEach(self.order.addItem);
-            }
-            catch (e) {
-                console.log(e);
-                return false;
-            }
-
-            return false;
+            selectedItems.forEach(self.order.addItem);
         }
     });
 
