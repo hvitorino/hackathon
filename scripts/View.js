@@ -8,7 +8,8 @@ Hackathon.View = function(props) {
 
     self.order = new Hackathon.Components.Order({
         onCloseAccount: function () {
-            alert("Fechar a conta");
+            var orderedItems = self.order.getOrderedItems();
+            orderedItems.forEach(self.account.addItem);
         }
     });
 

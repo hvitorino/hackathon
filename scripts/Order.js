@@ -19,12 +19,16 @@ Hackathon.Components.Order = function(props) {
         self.table.appendChild(orderItem.render());
     };
 
+    self.getOrderedItems = function () {
+        return self.orderedItems;
+    };
+
     self.goToMenu = function () {
         self.hide();
         self.menu.show();
     };
 
-    self.closeAccount = function () {
+    self.goToAccount = function () {
         self.hide();
         self.account.show();
     };
@@ -142,6 +146,7 @@ Hackathon.Components.Order = function(props) {
         aMenu.className = "button forward";
         aMenu.onclick = function () {
             self.onCloseAccount();
+            self.goToAccount();
 
             return false;
         };

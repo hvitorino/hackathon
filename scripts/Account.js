@@ -54,19 +54,6 @@ Hackathon.Components.Account = function(props) {
     self.renderHeader = function () {
         var header = document.createElement('header');
 
-        var aVoltar = document.createElement('a');
-        aVoltar.href = "";
-        aVoltar.className = "button back";
-        aVoltar.appendChild(document.createTextNode("Voltar"));
-        header.appendChild(aVoltar);
-
-        var aAvancar = document.createElement('a');
-        aAvancar.href = "";
-        aAvancar.className = "button foward";
-
-        aAvancar.appendChild(document.createTextNode("Avancar"));
-        header.appendChild(aAvancar);
-
         var h1Titulo = document.createElement('h1');
         h1Titulo.appendChild(document.createTextNode("Conta"));
         header.appendChild(h1Titulo);
