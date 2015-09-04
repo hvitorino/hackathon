@@ -189,6 +189,10 @@ Hackathon.Components.MenuItem = function (props) {
         var inputAmount = document.createElement('input');
         inputAmount.type = "number";
         inputAmount.value = self.amount;
+        inputAmount.onchange = function () {
+            self.amount = inputAmount.value;
+        } ;
+
         tdAmount.appendChild(inputAmount);
 
         tr.appendChild(tdAmount);
