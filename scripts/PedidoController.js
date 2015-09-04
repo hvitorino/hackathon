@@ -1,6 +1,7 @@
 /**
  * Created by Hamon on 04/09/2015.
  */
+
 hackathon.controller("PedidoController", function ($scope){
     $scope.items = [
         { name: "Coxinha", amount: 1, price: 3.0 },

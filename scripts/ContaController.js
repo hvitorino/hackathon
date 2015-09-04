@@ -1,7 +1,6 @@
 /**
  * Created by Hamon on 04/09/2015.
  */
-var hackathon = angular.module("hackathon", []);
 
 hackathon.controller("ContaController", function ($scope){
     $scope.items = [
