@@ -1,12 +1,85 @@
 ﻿<!DOCTYPE html>
-<html ng-app>
+<html ng-app="hackathon">
 <head>
     <title></title>
     <meta charset="utf-8" />
     <link href="css/index.css" rel="stylesheet" />
     <script src="node_modules/angular/angular.js"></script>
+    <script src="scripts/ContaController.js"></script>
+    <script src="scripts/CardapioController.js"></script>
+    <script src="scripts/PedidoController.js"></script>
 </head>
 <body>
-    
+
+<section ng-controller="PedidoController" class="open">
+    <header>
+        <h1>Pedido</h1>
+    </header>
+    <article>
+        <table>
+            <thead>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td><span>{{item.name}}</span></td>
+                <td><span>{{item.amount}}</span></td>
+                <td><span>{{item.price}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+</section>
+
+<section ng-controller="CardapioController" class="open">
+    <header>
+        <h1>Cardápio</h1>
+    </header>
+    <article>
+        <table>
+            <thead>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Incluir</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td><span>{{item.name}}</span></td>
+                    <td><input type="number" ng_model="item.amount" /></td>
+                    <td><span>{{item.price}}</span></td>
+                    <td><input type="checkbox" ng-checked="{{item.selected}}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</section>
+
+<section ng-controller="ContaController" class="open">
+    <header>
+        <h1>Conta</h1>
+    </header>
+    <article>
+        <table>
+            <thead>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Preço</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td><span>{{item.name}}</span></td>
+                <td><span>{{item.amount}}</span></td>
+                <td><span>{{item.price}}</span></td>
+                <td><span>{{item.amount * item.price}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+</section>
+
 </body>
 </html>
