@@ -1,54 +1,12 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
     <title></title>
     <meta charset="utf-8" />
     <link href="css/index.css" rel="stylesheet" />
-    <script>
-        function addScript(filepath, callback) {
-            if (filepath) {
-                var fileref = document.createElement('script');
-                var done = false;
-                var head = document.getElementsByTagName("head")[0];
-
-                fileref.onload = fileref.onreadystatechange = function () {
-                    if (!done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
-                        done = true;
-
-                        callback();
-
-                        // Handle memory leak in IE
-                        fileref.onload = fileref.onreadystatechange = null;
-                        if (head && fileref.parentNode) {
-                            head.removeChild(fileref);
-                        }
-                    }
-                };
-
-                fileref.setAttribute("type", "text/javascript");
-                fileref.setAttribute("src", filepath);
-
-                head.appendChild(fileref);
-            }
-        }
-
-        function addAllScripts() {
-            addScript("scripts/hackathon.js", function () {
-                addScript("scripts/Menu.js", function () {
-                    addScript("scripts/Account.js", function () {
-                        addScript("scripts/Order.js", function () {
-                            addScript("scripts/View.js", function () {
-                                Hackathon.init();
-                            })
-                        })
-                    })
-                })
-            });
-        };
-
-        addAllScripts();
-    </script>
+    <script src="node_modules/angular/angular.js"></script>
 </head>
 <body>
+    
 </body>
 </html>
